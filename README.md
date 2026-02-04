@@ -4,4 +4,11 @@ Codespace init
 # after github login
 source ~/.bashrc 
 ```
-> cat /workspaces/.codespaces/.persistedshare/dotfiles/install.sh
+
+```bash
+# other terminal
+cd /workspaces/.codespaces/.persistedshare/dotfiles
+git pull origin main
+cat /workspaces/.codespaces/.persistedshare/dotfiles/install.sh
+./install.sh
+```
