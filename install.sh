@@ -1,36 +1,30 @@
 #!/bin/bash
 set -e 
 
-echo "🚀 Starting Claude Setup in Codespaces." 
+echo "🚀 Starting Claude Standalone Setup..." 
 
-# [추가] npm이 없는 경우 Node.js 및 npm 설치
-if ! command -v npm &> /dev/null; then
-  echo "📦 npm not found. Installing Node.js and npm..."
-  sudo apt-get update
-  sudo apt-get install -y nodejs npm
-fi
+# 1. Claude Code 독립 실행형 설치 (npm 없이 설치 가능)
+# 시스템 환경에 따라 자동으로 ~/.local/bin 또는 /usr/local/bin에 설치됩니다.
+curl -fsSL https://claude.ai/install.sh | sh
 
-# 1. NPM 전역 경로 설정
-export NPM_CONFIG_PREFIX="$HOME/.npm-global"
-mkdir -p "$NPM_CONFIG_PREFIX"
-npm config set prefix "$NPM_CONFIG_PREFIX"
+# 2. 환경 변수 및 Alias 영구 등록 로직
+# .bashrc에 설정이 없을 경우에만 추가하여 중복을 방지합니다.
+RC_FILE="$HOME/.bashrc"
 
-# 2. 환경 변수 및 Alias 등록 (.bashrc 및 .profile 대응)
-for file in ~/.bashrc ~/.profile; do
-  if [ -f "$file" ]; then
-    if ! grep -q "npm-global/bin" "$file"; then
-      echo 'export PATH="$HOME/.npm-global/bin:$PATH"' >> "$file"
-      echo 'export ANTHROPIC_MODEL=claude-opus-4-5' >> "$file"
-      echo 'alias clauded="claude --dangerously-skip-permissions"' >> "$file"
-    fi
+add_config() {
+  if ! grep -q "$1" "$RC_FILE"; then
+    echo "$1" >> "$RC_FILE"
   fi
-done
+}
 
-# 3. Claude Code 설치 (현재 세션 PATH 적용)
-export PATH="$HOME/.npm-global/bin:$PATH"
-npm install -g @anthropic-ai/claude-code
+# PATH 추가: 설치 경로가 ~/.local/bin일 경우를 대비
+add_config 'export PATH="$HOME/.local/bin:$PATH"'
+# 모델 설정 (기존 제안하신 모델명 유지)
+add_config 'export ANTHROPIC_MODEL=claude-opus-4-5'
+# Alias 설정
+add_config 'alias clauded="claude --dangerously-skip-permissions"'
 
-# 4. ~/.claude.json 생성
+# 3. .claude.json 설정 (기존 도구 목록 유지)
 cat << 'EOF' > ~/.claude.json
 {
   "allowedTools": [
