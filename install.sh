@@ -6,4 +6,4 @@ bash /tmp/setup.sh
 rm /tmp/setup.sh
 
 # user change. oo
-# exec su - u1
+# su - u1
