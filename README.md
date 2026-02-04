@@ -6,7 +6,7 @@ source ~/.bashrc
 ```
 
 ```bash
-# other terminal
+# refresh install.sh -- create other terminal
 cd /workspaces/.codespaces/.persistedshare/dotfiles
 git pull origin main
 cat /workspaces/.codespaces/.persistedshare/dotfiles/install.sh
