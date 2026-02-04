@@ -1,34 +1,29 @@
 #!/bin/bash
-# 사용자 검증 코드를 기반으로 한 Claude CLI 설정 스크립트
 set -e 
 
 echo "🚀 Starting Claude Setup in Codespaces." 
 
-# ? Claude Code가 보안 저장소(Secret Service)에 접근하기 위해 필요 ?
-# sudo apt-get update && sudo apt-get install -y libsecret-1-dev
+# [차이점 2] $HOME 변수 사용으로 경로 에러 방지
+export NPM_CONFIG_PREFIX="$HOME/.npm-global"
+mkdir -p "$NPM_CONFIG_PREFIX"
+npm config set prefix "$NPM_CONFIG_PREFIX"
 
-# 1. NPM 전역 경로
-mkdir -p ~/.npm-global
-npm config set prefix '~/.npm-global'
+# [차이점 1] .bashrc 뿐만 아니라 .profile에도 추가하여 인식률 100% 보장
+for file in ~/.bashrc ~/.profile; do
+  if [ -f "$file" ]; then
+    # 중복 추가 방지 체크
+    if ! grep -q "npm-global/bin" "$file"; then
+      echo 'export PATH="$HOME/.npm-global/bin:$PATH"' >> "$file"
+      echo 'export ANTHROPIC_MODEL=claude-opus-4-5' >> "$file"
+      echo 'alias clauded="claude --dangerously-skip-permissions"' >> "$file"
+    fi
+  fi
+done
 
-if ! grep -q "ANTHROPIC_MODEL" ~/.bashrc; then
-  cat >> ~/.bashrc << 'EOF'
-export PATH=~/.npm-global/bin:$PATH
-export ANTHROPIC_MODEL=claude-opus-4-5
-EOF
-  echo "Configuration appended to .bashrc"
-else
-  echo "Configuration already exists in .bashrc"
-fi
+# 2. Claude Code 설치 (설치 시점에도 PATH 명시)
+PATH="$HOME/.npm-global/bin:$PATH" npm install -g @anthropic-ai/claude-code
 
-# 2. Claude Code
-export PATH=~/.npm-global/bin:$PATH
-npm install -g @anthropic-ai/claude-code
-
-# 3. Alias 및 설정 파일
-echo 'alias clauded="claude --dangerously-skip-permissions"' >> ~/.bashrc
-
-# ~/.claude.json 생성
+# 3. 설정 파일 생성 (기존과 동일)
 cat << 'EOF' > ~/.claude.json
 {
   "allowedTools": [
@@ -54,5 +49,4 @@ cat << 'EOF' > ~/.claude.json
 }
 EOF
 
-source ~/.bashrc
 echo "✅ Claude Setup Completed Successfully."
