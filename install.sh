@@ -3,15 +3,21 @@ set -e
 
 echo "🚀 Starting Claude Setup in Codespaces." 
 
-# [차이점 2] $HOME 변수 사용으로 경로 에러 방지
+# [추가] npm이 없는 경우 Node.js 및 npm 설치
+if ! command -v npm &> /dev/null; then
+  echo "📦 npm not found. Installing Node.js and npm..."
+  sudo apt-get update
+  sudo apt-get install -y nodejs npm
+fi
+
+# 1. NPM 전역 경로 설정
 export NPM_CONFIG_PREFIX="$HOME/.npm-global"
 mkdir -p "$NPM_CONFIG_PREFIX"
 npm config set prefix "$NPM_CONFIG_PREFIX"
 
-# [차이점 1] .bashrc 뿐만 아니라 .profile에도 추가하여 인식률 100% 보장
+# 2. 환경 변수 및 Alias 등록 (.bashrc 및 .profile 대응)
 for file in ~/.bashrc ~/.profile; do
   if [ -f "$file" ]; then
-    # 중복 추가 방지 체크
     if ! grep -q "npm-global/bin" "$file"; then
       echo 'export PATH="$HOME/.npm-global/bin:$PATH"' >> "$file"
       echo 'export ANTHROPIC_MODEL=claude-opus-4-5' >> "$file"
@@ -20,10 +26,11 @@ for file in ~/.bashrc ~/.profile; do
   fi
 done
 
-# 2. Claude Code 설치 (설치 시점에도 PATH 명시)
-PATH="$HOME/.npm-global/bin:$PATH" npm install -g @anthropic-ai/claude-code
+# 3. Claude Code 설치 (현재 세션 PATH 적용)
+export PATH="$HOME/.npm-global/bin:$PATH"
+npm install -g @anthropic-ai/claude-code
 
-# 3. 설정 파일 생성 (기존과 동일)
+# 4. ~/.claude.json 생성
 cat << 'EOF' > ~/.claude.json
 {
   "allowedTools": [
