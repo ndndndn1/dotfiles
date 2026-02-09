@@ -15,3 +15,10 @@ bash /tmp/setup.sh
 rm -f /tmp/setup.sh
 # user change. oo
 # su - u1
+
+# claude plugin market
+if command -v claude &> /dev/null; then
+    claude plugin marketplace add anthropics/claude-code 2>/dev/null || true
+    claude plugin marketplace add boostvolt/claude-code-lsps 2>/dev/null || true
+fi
+# /plugin
