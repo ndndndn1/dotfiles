@@ -51,10 +51,7 @@ claude plugin marketplace add paddo/claude-tools
 ---
 ### Try1. refresh install.sh -- create other terminal
 ```bash
-cd /workspaces/.codespaces/.persistedshare/dotfiles
-git pull origin main
-cat /workspaces/.codespaces/.persistedshare/dotfiles/install.sh
-./install.sh
+cd /workspaces/.codespaces/.persistedshare/dotfiles && git pull origin main && cat install.sh && ./install.sh
 ```
 
 ### Try2. after github login
