@@ -35,8 +35,9 @@ Codespace init
 claude plugin install pr-review@anthropics-claude-code
 #반드시 코드 탐색 후 구현
 claude plugin install feature-development@anthropics-claude-code
-#이 작업 통과할 때까지 반복해
-claude plugin install loop@anthropics-claude-code
+#이 작업 통과할 때까지 반복해. https://github.com/anthropics/claude-code/tree/main/plugins/ralph-wiggum
+claude plugin install ralph-wiggum@claude-plugins-official
+? claude plugin install loop@anthropics-claude-code
 ```
 - agent friendly
 ```bash
