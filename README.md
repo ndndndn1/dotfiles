@@ -1,7 +1,15 @@
 # dotfiles
 Codespace init
-### claude plugin install(optional)
+### claude plugin (optional)
 /plugin > Discover
+- ralph-loop (260213)
+```
+# /plugin install ralph-loop@claude-plugins-official
+# run.터미널 1 - Planner
+/ralph-loop:ralph-loop "OBJECTIVE: '논문 검색과 human-loop를 통한 agent friendly 인터랙티브 연구노트 개발' \n\n $(cat ~/claude-prompts/planner-prompt.txt)" --max-iterations 30 --completion-promise "PLANNING_COMPLETE"
+# run.터미널 2 - Worker (Planner 먼저 실행하고 Worker는 10~20초 후에 시작 권장)
+/ralph-loop:ralph-loop "OBJECTIVE: '계획에 따라 순차적 구현 수행' \n\n $(cat ~/claude-prompts/worker-prompt.txt)" --max-iterations 50 --completion-promise "WORK_COMPLETE"
+```
 - LSP(IDE-Language server protocol)
 ```bash
 # Python
@@ -35,9 +43,6 @@ Codespace init
 claude plugin install pr-review@anthropics-claude-code
 #반드시 코드 탐색 후 구현
 claude plugin install feature-development@anthropics-claude-code
-#이 작업 통과할 때까지 반복해. https://github.com/anthropics/claude-code/tree/main/plugins/ralph-wiggum
-claude plugin install ralph-wiggum@claude-plugins-official
-? claude plugin install loop@anthropics-claude-code
 ```
 - agent friendly
 ```bash
