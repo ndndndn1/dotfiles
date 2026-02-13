@@ -2,6 +2,7 @@
 set -e
 
 GIST_BASE="https://gist.githubusercontent.com/ndndndn1"
+DOTFILES_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 if [ "$(id -u)" -eq 0 ]; then
     echo "terminal root"
@@ -20,5 +21,16 @@ rm -f /tmp/setup.sh
 if command -v claude &> /dev/null; then
     claude plugin marketplace add anthropics/claude-code 2>/dev/null || true
     claude plugin marketplace add boostvolt/claude-code-lsps 2>/dev/null || true
+    claude plugin install ralph-wiggum@claude-plugins-official 2>/dev/null || true
 fi
-# /plugin
+
+# ralph prompts → ~/claude-prompts/ (fixed path)
+PROMPT_SRC="$DOTFILES_DIR/claude-prompts"
+PROMPT_DST="$HOME/claude-prompts"
+
+if [ -d "$PROMPT_SRC" ]; then
+    mkdir -p "$PROMPT_DST"
+    ln -sf "$PROMPT_SRC/planner-prompt.txt" "$PROMPT_DST/planner-prompt.txt"
+    ln -sf "$PROMPT_SRC/worker-prompt.txt" "$PROMPT_DST/worker-prompt.txt"
+    echo "✅ ralph prompts → $PROMPT_DST"
+fi
