@@ -21,8 +21,9 @@ rm -f /tmp/setup.sh
 if command -v claude &> /dev/null; then
     claude plugin marketplace add anthropics/claude-code 2>/dev/null || true
     claude plugin marketplace add boostvolt/claude-code-lsps 2>/dev/null || true
-    claude plugin install ralph-wiggum@claude-plugins-official 2>/dev/null || true
 fi
+# plugin install is manual only 
+# /plugin install ralph-loop@claude-plugins-official
 
 # ralph prompts → ~/claude-prompts/ (fixed path)
 PROMPT_SRC="$DOTFILES_DIR/claude-prompts"
