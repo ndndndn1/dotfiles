@@ -4,12 +4,11 @@
 
 0. Quick start
 # 터미널 1 - Planner
-claude -p "/ralph-loop $(cat ~/claude-prompts/planner-prompt.txt | sed "s|{{PROJECT_DESCRIPTION}}|논문 검색과 human-loop를 통한 agent friendly 인터랙티브 연구노트 개발|") --max-iterations 30 --completion-promise PLANNING_COMPLETE"
-/ralph-loop "OBJECTIVE: '논문 검색과 human-loop를 통한 agent friendly 인터랙티브 연구노트 개발' \n\n $(cat ~/claude-prompts/planner-prompt.txt)" --max-iterations 30 --completion-promise "PLANNING_COMPLETE"
+/ralph-loop:ralph-loop "OBJECTIVE: '논문 검색과 human-loop를 통한 agent friendly 인터랙티브 연구노트 개발' \n\n $(cat ~/claude-prompts/planner-prompt.txt)" --max-iterations 30 --completion-promise "PLANNING_COMPLETE"
 
 # 터미널 2 - Worker (Planner가 queue/ 채운 후)
 claude -p "/ralph-loop $(cat ~/claude-prompts/worker-prompt.txt) --max-iterations 50 --completion-promise WORK_COMPLETE"
-/ralph-loop "OBJECTIVE: '계획에 따라 순차적 구현 수행' \n\n $(cat ~/claude-prompts/worker-prompt.txt)" --max-iterations 50 --completion-promise "WORK_COMPLETE"
+/ralph-loop:ralph-loop "OBJECTIVE: '계획에 따라 순차적 구현 수행' \n\n $(cat ~/claude-prompts/worker-prompt.txt)" --max-iterations 50 --completion-promise "WORK_COMPLETE"
 
 
 1. DOTFILES REPO (GitHub → Codespace 자동 클론)
