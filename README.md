@@ -1,5 +1,19 @@
 # dotfiles
 Codespace init
+### hermes agent (NousResearch)
+```
+curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
+# slack: bot key, app key, **user id(users:read)** - api.slack.com/apps
+curl -X GET "https://slack.com/api/users.list" \
+     -H "Authorization: Bearer xoxb-YOUR_BOT_TOKEN" \
+     -H "Content-Type: application/json"
+```
+### openai codex (local)
+```
+npm i @openai/codex
+alias codex="npx codex --yolo"
+codex
+```
 ### claude plugin (optional)
 /plugin > Discover
 - reposit context caching in sqldb (260326)
