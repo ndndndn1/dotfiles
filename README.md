@@ -14,7 +14,7 @@ Claude Code 확장 레이어
 ```
 - **공통**: community에 claude 돌리는 방식 및 좋다 싶은 건 대부분 공식이 흡수(feedback 및 issue를 AI가 판단해서 4천개씩 반영)
 - **Skills**: *.md. 특정 도메인(ex. 법,의료,금융,[디자인](https://github.com/VoltAgent/awesome-design-md)) 반영할 때 권장
-- **Plugins**: skills + commands + hooks + MCP서버. 클로드 공식이 제공하는 게 177개 이상
+- **Plugins**: skills + commands + hooks + MCP서버. 클로드 공식이 177개 이상 제공. 
 ### hermes agent (NousResearch)
 ```
 curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
@@ -59,12 +59,16 @@ limit 3이 적당함
 /plugin install java-lsp@claude-plugins-official
 /plugin install kotlin-lsp@claude-plugins-official
 
-# --- Community LSP
+# Bash, YAML, Terraform, Dart, (Community)
+/plugin marketplace add boostvolt/claude-code-lsps
+/plugin install bash-language-server@claude-code-lsps
 /plugin install yaml-language-server@claude-code-lsps
-# Bash, YAML, Terraform, Dart, ...
+
 ```
 - official Claude
 ```bash
+# github API로 직접 통신
+/plugin install github@claude-plugins-official
 # 보안 스캔 - SQL injection, XSS 등 취약점 실시간 감지
 /plugin install security-guidance@claude-plugin-directory
 # 멀티 에이전트 PR 리뷰
