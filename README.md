@@ -1,7 +1,7 @@
 # dotfiles
 Codespace init
 - install.sh 에 미반영된 것만 readme.md 에 작성
-- 
+
 ### claude eco (202605)
 ```
 Claude Code 확장 레이어
@@ -55,6 +55,8 @@ limit 3이 적당함
 /plugin install typescript-lsp@claude-plugins-official
 # C# (,Unity)
 /plugin install csharp-lsp@claude-plugins-official
+# C
+/plugin install clangd-lsp@claude-plugins-official
 # Java/Kotlin (Android)
 /plugin install java-lsp@claude-plugins-official
 /plugin install kotlin-lsp@claude-plugins-official
@@ -67,10 +69,15 @@ limit 3이 적당함
 ```
 - official Claude
 ```bash
+# 크롤링
+/plugin install firecrawl@claude-plugins-official
+# 로컬 git
+/plugin install commit-commands@claude-plugins-official
 # github API로 직접 통신
 /plugin install github@claude-plugins-official
 # 보안 스캔 - SQL injection, XSS 등 취약점 실시간 감지
-/plugin install security-guidance@claude-plugin-directory
+/plugin install security-guidance@claude-plugins-official
+
 # 멀티 에이전트 PR 리뷰
 /plugin install pr-review@claude-plugin-directory
 # 체계적 기능 개발 워크플로우
