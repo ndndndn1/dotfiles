@@ -1,7 +1,6 @@
 # dotfiles
 Codespace init
 - install.sh 에 미반영된 것만 readme.md 에 작성
-- claude plugin을 user scope로 설치 시 환경에 무관하게 동일하게 적용됨(web, cli, ..)
 
 ### claude eco (202605)
 ```
