@@ -1,5 +1,15 @@
 # dotfiles
 Codespace init
+### claude eco (202605)
+```
+Claude Code 확장 레이어
+├── Skills 2.0          ← 재사용 가능한 지식/워크플로우 (여전히 핵심. community skill 중 claude 돌리는 방식은 대부분 공식이 흡수(. 특정 도메인 권장)
+├── Hooks               ← 결정론적 lifecycle 자동화 (PreToolUse 등)
+├── Subagents           ← 독립 context 단일 보고 에이전트
+├── Agent Teams (실험)  ← 에이전트 간 peer-to-peer 통신
+├── Channels (미리보기) ← 외부(Discord/Telegram)→Claude 원격 제어
+└── Plugins/MCP         ← 외부 도구 연동
+```
 ### hermes agent (NousResearch)
 ```
 curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
@@ -7,6 +17,8 @@ curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scri
 curl -X GET "https://slack.com/api/users.list" \
      -H "Authorization: Bearer xoxb-YOUR_BOT_TOKEN" \
      -H "Content-Type: application/json"
+# only API key
+구독방식이 있더라도 key를 가져오기 위한 방편. whitelist 방식의 egress 제한 필요
 ```
 ### openai codex (local)
 ```
@@ -22,6 +34,7 @@ claude plugin marketplace add tirth8205/code-review-graph
 claude plugin install code-review-graph@code-review-graph
 ```
 - ralph-loop (260213)
+limit 3이 적당함
 ```
 # /plugin install ralph-loop@claude-plugins-official
 # run.터미널 1 - Planner
