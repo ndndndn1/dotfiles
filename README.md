@@ -10,7 +10,9 @@ Claude Code 확장 레이어
 ├── Channels (미리보기) ← 외부(Discord/Telegram)→Claude 원격 제어
 └── Plugins/MCP         ← 외부 도구 연동
 ```
-- community skill 중 claude 돌리는 방식은 대부분 공식이 흡수(feedback 및 issue를 AI가 판단해서 반영. 직접 찾아서 적용하는 것보다 2000배 빠름). 특정 도메인(ex. 법,의료,금융,디자인) 반영할 때 권장
+- **공통**: community에 claude 돌리는 방식 및 좋다 싶은 건 대부분 공식이 흡수(feedback 및 issue를 AI가 판단해서 반영. 직접 찾아서 적용하는 것보다 2000배 빠름)
+- **Skills**: *.md. 특정 도메인(ex. 법,의료,금융,디자인) 반영할 때 권장
+- **Plugins**: skills + commands + hooks + MCP서버. 클로드 공식이 제공하는 게 177개 이상
 ### hermes agent (NousResearch)
 ```
 curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
