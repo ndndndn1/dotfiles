@@ -1,5 +1,7 @@
 # dotfiles
 Codespace init
+- install.sh 에 미반영된 것만 readme.md 에 작성
+- 
 ### claude eco (202605)
 ```
 Claude Code 확장 레이어
