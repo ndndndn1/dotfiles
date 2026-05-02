@@ -3,17 +3,18 @@ Codespace init
 ### claude eco (202605)
 ```
 Claude Code 확장 레이어
-├── Skills 2.0          ← 재사용 가능한 지식/워크플로우 (여전히 핵심. community skill 중 claude 돌리는 방식은 대부분 공식이 흡수(. 특정 도메인 권장)
+├── Skills 2.0          ← 재사용 가능한 지식/워크플로우 (여전히 핵심)
 ├── Hooks               ← 결정론적 lifecycle 자동화 (PreToolUse 등)
 ├── Subagents           ← 독립 context 단일 보고 에이전트
 ├── Agent Teams (실험)  ← 에이전트 간 peer-to-peer 통신
 ├── Channels (미리보기) ← 외부(Discord/Telegram)→Claude 원격 제어
 └── Plugins/MCP         ← 외부 도구 연동
 ```
+- community skill 중 claude 돌리는 방식은 대부분 공식이 흡수. 특정 도메인(ex. 법,의료,금융,디자인) 반영할 때 권장
 ### hermes agent (NousResearch)
 ```
 curl -fsSL https://raw.githubusercontent.com/NousResearch/hermes-agent/main/scripts/install.sh | bash
-# slack: bot key, app key, **user id(users:read)** - api.slack.com/apps
+# gateway slack: bot key, app key, **user id(users:read)** - api.slack.com/apps
 curl -X GET "https://slack.com/api/users.list" \
      -H "Authorization: Bearer xoxb-YOUR_BOT_TOKEN" \
      -H "Content-Type: application/json"
