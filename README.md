@@ -74,24 +74,24 @@ limit 3이 적당함
 /plugin install firecrawl@claude-plugins-official
 # 로컬 git
 /plugin install commit-commands@claude-plugins-official
-# github API로 직접 통신
-/plugin install github@claude-plugins-official
 # 보안 스캔 - SQL injection, XSS 등 취약점 실시간 감지
 /plugin install security-guidance@claude-plugins-official
+# gateway slack (인증 시 link 1줄 join, rm space, login, 다른 session에서 curl -L 'localhost...')
+/plugin install slack@claude-plugins-official
 
-# 멀티 에이전트 PR 리뷰
-/plugin install pr-review@claude-plugin-directory
 # 체계적 기능 개발 워크플로우
 /plugin install feature-development@claude-plugin-directory
 # 프론트엔드 UI/UX 특화
 /plugin install frontend-design@claude-plugin-directory
 # 플러그인 개발 도구
 /plugin install plugin-dev@claude-plugin-directory
-# --- anthropics/claude-code
-#멀티 에이전트 PR 코드 리뷰 + 신뢰도 점수
-claude plugin install pr-review@anthropics-claude-code
-#반드시 코드 탐색 후 구현
-claude plugin install feature-development@anthropics-claude-code
+
+# 멀티 에이전트 PR 코드 리뷰 + 신뢰도 점수
+claude plugin install pr-review@claude-plugin-directory
+# (plan mode로 대체가능)반드시 코드 탐색 후 구현
+claude plugin install feature-dev@claude-plugin-directory
+# (계정 인증필요. gh가 편함)github API로 직접 통신
+/plugin install github@claude-plugins-official
 ```
 - agent friendly
 ```bash
