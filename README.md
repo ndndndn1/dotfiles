@@ -25,11 +25,19 @@ curl -X GET "https://slack.com/api/users.list" \
 # only API key
 구독방식이 있더라도 key를 가져오기 위한 방편. whitelist 방식의 egress 제한 필요
 ```
-### openai codex (local)
+### openai [codex](https://developers.openai.com/codex/cli#cli-setup)
 ```
 npm i @openai/codex
 alias codex="npx codex --yolo"
 codex
+codex exec #https://developers.openai.com/codex/cli/reference#codex-exec
+```
+### [gemini-cli](https://geminicli.com/docs/get-started/#install)
+```
+npm install @google/gemini-cli
+alias gemini='npx gemini --approval-mode=yolo'
+gemini
+gemini -p #https://github.com/google-gemini/gemini-cli#non-interactive-mode-for-scripts
 ```
 ### claude plugin (optional)
 /plugin > Discover
