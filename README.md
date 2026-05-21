@@ -32,7 +32,12 @@ alias codex="npx codex --yolo"
 codex
 codex exec #https://developers.openai.com/codex/cli/reference#codex-exec
 ```
-### [gemini-cli](https://geminicli.com/docs/get-started/#install)
+### [Antigravity CLI](https://antigravity.google/download)
+```
+curl -fsSL https://antigravity.google/cli/install.sh | bash
+
+```
+### [gemini-cli](https://geminicli.com/docs/get-started/#install) deprecated 260618 (except enterprise)
 ```
 npm install @google/gemini-cli
 alias gemini='npx gemini --approval-mode=yolo'
