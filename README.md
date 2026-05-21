@@ -35,7 +35,8 @@ codex exec #https://developers.openai.com/codex/cli/reference#codex-exec
 ### [Antigravity CLI](https://antigravity.google/download)
 ```
 curl -fsSL https://antigravity.google/cli/install.sh | bash
-
+alias agy="agy --dangerously-skip-permissions"
+agy
 ```
 ### [gemini-cli](https://geminicli.com/docs/get-started/#install) deprecated 260618 (except enterprise)
 ```
